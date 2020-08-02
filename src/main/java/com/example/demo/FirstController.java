@@ -87,7 +87,7 @@ public class FirstController {
 			  topFiveStocks t= new topFiveStocks();
 			  model.addAttribute("user", new User());
 			 model.addAttribute("t", t);
-			  String url1="https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan="+user1.marketcap+"&betaMoreThan=1&volumeMoreThan=10000&limit=100&apikey=620c11c196a561b03e5e6201f4970816";
+			  String url1="https://financialmodelingprep.com/api/v3/stock-screener?marketCapMoreThan="+user1.marketcap+"&betaMoreThan=1&volumeMoreThan=10000&limit=100&apikey=408e8409b7b3aa3345aa45e501c558b2";
 			System.out.println(url1);
 			  URL url=Null;
 				try {
@@ -294,8 +294,11 @@ public class FirstController {
 		public String submitForm(@ModelAttribute("user") User user) {
 
 			//findById(user.username);
-			user1.setUsername(user.username);
-			user1.setPassword(user.password);
+			  String u=user.username;
+			  String p=user.password;
+			 
+			user1.setUsername(u);
+			user1.setPassword(p);
 			
 			
 			int l1=verify(user);
@@ -317,12 +320,16 @@ public class FirstController {
 		 public int verify(User user)
 		 {
 			 try {
-			 String query ="select * from user where username ='"+user.username+"'";
+				  String u=user.username;
+				  String p=user.password;
+				 u=u.trim();
+				  p=p.trim();
+			 String query ="select * from user where username ='"+u+"'";
 			 System.out.println(query);
 			 User l1=jdbcTemplate.queryForObject(query, new Object[] { },
 
 			        (rs,rowNum) -> new User(rs.getString("username"),rs.getString("pass")));
-			 if(user.password.equals(l1.password))
+			 if(p.equals(l1.password))
 			 {
 				 return 1;
 			 }
@@ -443,7 +450,7 @@ public class FirstController {
 		        	user1.msg1=" ";
 		        for (SavedStock map : savedstocks) {
 					//System.out.println(map.toString());
-					String url="https://financialmodelingprep.com/api/v3/quote/"+map.symbol+"?apikey=620c11c196a561b03e5e6201f4970816";
+					String url="https://financialmodelingprep.com/api/v3/quote/"+map.symbol+"?apikey=408e8409b7b3aa3345aa45e501c558b2";
 					
 					
 					

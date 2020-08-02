@@ -109,7 +109,7 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 20%;
+  width: 60%;
 }
 
 
@@ -170,6 +170,26 @@ table {
  <h2>Stock Recommendation System</h2>
  
 </header>
+
+
+<script>
+function myFunction1() {
+  document.getElementById("st").value = "1";
+}
+function myFunction2() {
+	  document.getElementById("st").value = "2";
+	}
+function myFunction3() {
+	  document.getElementById("st").value = "3";
+	}
+function myFunction4() {
+	  document.getElementById("st").value = "4";
+	}
+function myFunction5() {
+	  document.getElementById("st").value = "5";
+	}
+</script>
+
 <div class="topnav">
 
   
@@ -190,6 +210,7 @@ table {
     <th>Price</th>
     <th>Beta Ratio </th>
     <th>Volume</th>  
+    <th>Click_here_to_save </th>  
     </tr>
     <tr th:each="t : ${t}">
     <td>1</td>
@@ -199,7 +220,7 @@ table {
     <td th:text="${t.price1}"></td>
     <td th:text="${t.beta1}"></td>
     <td th:text="${t.volume1}"></td>
-    
+    <td> <button onclick="myFunction1()"  form="formed1">Save</button></td> 
 	</tr>
 	
 	<tr th:each="t : ${t}">
@@ -210,6 +231,7 @@ table {
     <td th:text="${t.price2}"></td>
     <td th:text="${t.beta2}"></td>
     <td th:text="${t.volume2}"></td>
+    <td> <button onclick="myFunction2()" form="formed1">Save</button></td> 
     </tr>
    
     <tr th:each="t : ${t}">
@@ -220,6 +242,7 @@ table {
     <td th:text="${t.price3}"></td>
     <td th:text="${t.beta3}"></td>
     <td th:text="${t.volume3}"></td>
+    <td> <button onclick="myFunction3()" form="formed1">Save</button></td> 
     </tr>
      <tr th:each="t : ${t}">
      <td>4</td>
@@ -229,6 +252,7 @@ table {
     <td th:text="${t.price4}"></td>
     <td th:text="${t.beta4}"></td>
     <td th:text="${t.volume4}"></td>
+    <td> <button onclick="myFunction4()" form="formed1">Save</button></td> 
     </tr>
     
          <tr th:each="t : ${t}">
@@ -239,16 +263,16 @@ table {
     <td th:text="${t.price5}"></td>
     <td th:text="${t.beta5}"></td>
     <td th:text="${t.volume5}"></td>
+    <td> <button onclick="myFunction5()" form="formed1">Save</button></td> 
     </tr>
   
     </table>
     <br>
     <!--/*@thymesVar id="user" type="com.example.demo.User"*/-->
- <form action="#" th:action="@{/viewsavedstocks}" th:object="${user}" method="get">
-<h3>Enter Stock Number and click save </h3>
-<input type="text" th:field="*{savedstock}"  id="box_text" />
-<button type="submit" value="Save">Save Stock</button>
+ <form action="#" th:action="@{/viewsavedstocks}" th:object="${user}" method="get" id="formed1">
+<input type="hidden" th:field="*{savedstock}"  id="st" /></input>
 </form>
+
 <br><br><br><br><br><br><br><br>
 </div>
 
